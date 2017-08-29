@@ -1,8 +1,9 @@
 const category = (state = {}, action) => {
   switch (action.type) {
-    case 'TEST':
+    case 'GET_CATEGORY_RESOLVED':
       return {
-        isWorking: true
+        ...state,
+        list: action.payload
       };
     default:
       return state;

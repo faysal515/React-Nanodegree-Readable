@@ -1,13 +1,38 @@
 import React, {Component} from 'react'
-import logo from '../logo.svg';
+import Category from './category'
+import Loader from './loader'
+import { withStyles } from 'material-ui/styles';
+import Grid from 'material-ui/Grid';
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    marginTop: 30,
+    // marginLeft: 30
+  }
+});
 
-export default class Home extends Component {
+
+class Home extends Component {
+
+  renderCategories() {
+    const {list} = this.props.category
+    return list ? list.map((ct,i) => {
+      return <Category key={i} data={ct}/>
+      }) : <Loader/>
+  }
+
   render() {
+    const classes = this.props.classes
     return (
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
-        <h2>Project Readable - powered with React+Redux :)</h2>
+      <div className={classes.root}>
+        <Grid container spacing={24}>
+          {this.renderCategories()}
+        </Grid>
       </div>
+
+
     )
   }
 }
+
+export default withStyles(styles)(Home)

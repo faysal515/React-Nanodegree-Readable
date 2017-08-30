@@ -21,7 +21,7 @@ const Category = (props) => {
   const {classes, data} = props
   return (
     <Grid item xs={6} md={3}>
-      <Paper onClick={() => props.history.push(`/${data.path}`)} className={classes.paper} elevation={4}>
+      <Paper onClick={() => props.history.push(`/category/${data.path}`)} className={classes.paper} elevation={4}>
         <Typography type="headline" component="h3">
           {data.name}
         </Typography>

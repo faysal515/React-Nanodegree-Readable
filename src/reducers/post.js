@@ -4,13 +4,18 @@ const post = (state = {}, action) => {
       return {
         ...state,
         list: action.payload,
-        sorted: action.payload.sort((a,b) => a.voteScore-b.voteScore)
+        sorted: action.payload.sort((a,b) => b.voteScore-a.voteScore)
       };
-    case 'SORT_BY_VOTE':
-      return {
-        ...state,
-        list: action.payload
-      };
+    case 'SORT_BY_SOMETHING':
+      if(action.payload === 'maximum')
+        return {...state, sorted: action.payload.sort((a,b) => b.voteScore-a.voteScore)};
+      else if (action.payload === 'minimum')
+        return {...state, sorted: action.payload.sort((a,b) => a.voteScore-a.voteScore)};
+      else if(action.payload === 'oldest')
+        return {...state, sorted: action.payload.sort((a,b) => a.timestamp-b.timestamp)};
+      else if(action.payload === 'newest')
+        return {...state, sorted: action.payload.sort((a,b) => b.timestamp-a.timestamp)};
+      else return state
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Home from '../components/home';
 import {getCategories} from '../actions/category'
-import {getPosts} from '../actions/post'
+import {getPosts} from '../actions/posts'
 
 class HomeContainer extends Component {
 
@@ -19,7 +19,8 @@ class HomeContainer extends Component {
 
 const mapStateToProps = (store,ownProps) => {
   return {
-    category: store.category
+    category: store.category,
+    post: store.post
   }
 
 }

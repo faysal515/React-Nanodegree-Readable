@@ -5,9 +5,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 import category from './reducers/category'
+import post from './reducers/post'
 
 const rootReducer = combineReducers({
-  category
+  category,
+  post
 });
 
 const middlewares = [

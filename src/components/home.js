@@ -27,6 +27,14 @@ class Home extends Component {
       }) : <Loader/>
   }
 
+
+  renderPosts() {
+    const {sorted} = this.props.post
+    return sorted ? sorted.map((pc,i) => {
+        return <PostCard key={i} data={pc}/>
+      }) : <Loader/>
+  }
+
   render() {
     const classes = this.props.classes
     return (
@@ -34,15 +42,12 @@ class Home extends Component {
         <Grid container spacing={24}>
           {this.renderCategories()}
         </Grid>
+        <Grid container spacing={24}>
+          {this.renderPosts()}
+        </Grid>
         <Button fab color="primary" aria-label="add" className={classes.button} onClick={() => this.props.history.push('/create')}>
           <AddIcon />
         </Button>
-        <Grid container spacing={24}>
-          <PostCard />
-          <PostCard/>
-        </Grid>
-
-
       </div>
 
 

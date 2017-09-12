@@ -28,7 +28,8 @@ const mapStateToProps = (store,ownProps) => {
 const mapDispatchToProps = (dispatch,ownProps) => {
   return {
     getCategories : () => dispatch(getCategories()),
-    getPosts: () => dispatch(getPosts())
+    getPosts: () => dispatch(getPosts()),
+    changeSort: (sortBy) => dispatch({type:'SORT_BY_SOMETHING', payload: sortBy})
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)

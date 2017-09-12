@@ -22,7 +22,7 @@ export default class CreatePost extends Component {
     this.setState({selectedCategory:val})
   }
   render() {
-    var options = [
+    let options = [
       { value: 'one', label: 'One' },
       { value: 'two', label: 'Two' },
       { value: 'three', label: 'Three' }

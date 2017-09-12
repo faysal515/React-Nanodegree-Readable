@@ -3,6 +3,7 @@ import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import { withStyles } from 'material-ui/styles';
+import Select from 'react-select'
 import Category from './category'
 import PostCard from './postCard'
 import Loader from './loader'
@@ -19,6 +20,9 @@ const styles = theme => ({
 
 
 class Home extends Component {
+  state = {
+    selectedSort : { value: 'maximum', label: 'max vote' },
+  }
 
   renderCategories() {
     const {list} = this.props.category
@@ -27,7 +31,6 @@ class Home extends Component {
       }) : <Loader/>
   }
 
-
   renderPosts() {
     const {sorted} = this.props.post
     return sorted ? sorted.map((pc,i) => {
@@ -35,13 +38,31 @@ class Home extends Component {
       }) : <Loader/>
   }
 
+  selectSort(val) {
+    console.log("Selected: " + JSON.stringify(val));
+    this.setState({selectedSort:val})
+    this.props.changeSort(val.value)
+  }
+
   render() {
     const classes = this.props.classes
+    let options = [
+      { value: 'maximum', label: 'max vote' },
+      { value: 'minimum', label: 'min vote' },
+      { value: 'newest', label: 'newest' },
+      { value: 'oldest', label: 'oldest' }
+    ];
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
           {this.renderCategories()}
         </Grid>
+        <Select
+          name="sort-selection"
+          options={options}
+          value={this.state.selectedSort}
+          onChange={this.selectSort.bind(this)}
+        />
         <Grid container spacing={24}>
           {this.renderPosts()}
         </Grid>

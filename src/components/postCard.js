@@ -4,11 +4,14 @@ import {withStyles} from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Card, {CardActions, CardContent} from 'material-ui/Card';
 import Button from 'material-ui/Button';
+import FavoriteIcon from 'material-ui-icons/Favorite';
+import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   card: {
     minWidth: 275,
+    cursor: 'pointer'
   },
   bullet: {
     display: 'inline-block',
@@ -31,26 +34,30 @@ const PostCard = (props) => {
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <Grid item xs={12} md={6}>
-      <Card className={classes.card}>
+    <Grid item xs={12} md={6} >
+      <Card className={classes.card} onClick={() => console.log('click')}>
         <CardContent>
           <Typography type="body1" className={classes.title}>
-            Word of the Day
+            September 14, 2017 Thursday
           </Typography>
           <Typography type="headline" component="h2">
-            be{bull}nev{bull}o{bull}lent
+            Introduction to React
           </Typography>
           <Typography type="body1" className={classes.pos}>
-            adjective
+            Faysal Ahmed
           </Typography>
           <Typography component="p">
-            well meaning and kindly.<br />
-            {'"a benevolent smile"'}
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias harum ipsum maiores sint sit voluptate.
           </Typography>
+
         </CardContent>
-        <CardActions>
-          <Button dense>Learn More</Button>
-        </CardActions>
+        {<CardActions>
+          <IconButton aria-label="Add to favorites">
+            <FavoriteIcon color="red" />
+            24
+          </IconButton>
+
+        </CardActions>}
       </Card>
     </Grid>
 

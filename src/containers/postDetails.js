@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getPostsById} from '../actions/posts'
+import {getPostsById, deletePost} from '../actions/posts'
 import {getCommentsOfPost, createComment} from '../actions/comments'
 import PostDetails from '../components/postDetails'
 import Loader from '../components/loader'
@@ -37,6 +37,7 @@ const mapStateToProps = (store,ownProps) => {
 const mapDispatchToProps = (dispatch,ownProps) => {
   return {
     getPost: (id) => dispatch(getPostsById(id)),
+    deletePost: (id) => dispatch(deletePost(id)),
     getCommentsOfPost: id => dispatch(getCommentsOfPost(id)),
     publishComment: data => dispatch(createComment(data))
   }

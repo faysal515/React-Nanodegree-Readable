@@ -13,12 +13,12 @@ class Home extends Component {
       }) : <Loader/>
   }*/
 
-  /*renderPosts() {
+  renderPosts() {
     const {sorted} = this.props.post
     return sorted ? sorted.map((pc,i) => {
         return <PostCard key={i} data={pc}/>
       }) : <Loader/>
-  }*/
+  }
 
   selectSort(val) {
     console.log("Selected: " + JSON.stringify(val));
@@ -42,7 +42,7 @@ class Home extends Component {
           onChange={this.selectSort.bind(this)}
           className="select-sort"
         />
-        <PostCard/>
+        {this.renderPosts()}
       </div>
 
 

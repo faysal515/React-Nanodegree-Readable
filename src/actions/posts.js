@@ -26,7 +26,8 @@ export function getPostsById(id) {
       })
       .catch(e => {
         console.log('***', e.response)
-        return e.response.data // what if e.response if undefined?*/
+        throw new Error('dat fetch failed')
+       // return e // what if e.response if undefined?*/
       })
 
   }

@@ -1,44 +1,44 @@
 .App {
-  /*text-align: center;*/
+    /*text-align: center;*/
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
 }
 
 .App-intro {
-  font-size: large;
+    font-size: large;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 
 .loader {
-  border: 4px solid #f3f3f3; /* Light grey */
-  border-top: 4px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-  animation: spin 2s linear infinite;
-  align-content: center;
-  margin: auto;
-  margin-top: 80px;
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    animation: spin 2s linear infinite;
+    align-content: center;
+    margin: auto;
+    margin-top: 80px;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /*postcard css*/
@@ -46,9 +46,33 @@
     transition: box-shadow .3s linear;
 }
 /*utils css*/
-    .m-top{
-        margin-top: 3rem;
-    }
+button:focus {
+    outline:0;
+}
+.m-top-3{
+    margin-top: 3rem;
+}
+.flr{
+    float: right;
+}
+.fll{
+    float: left;
+}
+.m-top-7{
+    margin-top: 7rem;
+}
+.m-bot-7{
+    margin-bottom: 7rem;
+}
+.m-top-10{
+    margin-top: 10rem;
+}
+.pos-rel{
+    position: relative;
+}
+.m-top-1p5{
+    margin-top: 1.5rem;
+}
 /*utils css*/
 .post-card{
     position: relative;
@@ -89,3 +113,93 @@
     width: 20%;
 }
 /*postcard css*/
+
+/*postdetails css*/
+.author-name{
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(0,0,0,.8);
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+.post-date{
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0,0,0,.44);
+}
+.post-heading{
+    font-size: 40px;
+    font-weight: 700;
+    color: rgba(0,0,0,.8);
+}
+.post-des{
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(0,0,0,.7);
+}
+.like-bttn{
+    width: 14px;
+    height: 14px;
+    margin-left: 0.3rem;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.like-count{
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.6);
+}
+.action-bttn{
+    margin-left: 1rem;
+    background: rgba(0,0,0,.1);
+    color: rgba(0,0,0,.6);
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    border:none;
+}
+.comment-box{
+    margin: 10px 0 0;
+    /*display: table;*/
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+}
+.publish-bttn{
+    float: right;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    padding: 7px 16px;
+    color: rgba(0,0,0,.44);
+    background: rgba(0,0,0,0);
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,.15);
+    box-sizing: border-box;
+    border-radius: 999em;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+.commentee-name{
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0,0,0,.8);
+    margin-bottom: 0;
+}
+.commentee-date{
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(0,0,0,.44);
+}
+.comment-show{
+    padding: 2rem;
+    min-height: 14rem;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    border: 1px solid rgba(0,0,0,.09);
+    border-radius: 3px;
+}

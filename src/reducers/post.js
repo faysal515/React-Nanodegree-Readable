@@ -6,6 +6,19 @@ const post = (state = {}, action) => {
         list: action.payload,
         sorted: action.payload.sort((a,b) => b.voteScore-a.voteScore)
       };
+
+    case 'GET_SINGLE_POST_RESOLVED':
+      return {
+        ...state,
+        post: action.payload
+      }
+    case 'GET_POST_COMMENTS_RESOLVED':
+      return {
+        ...state,
+        comments: {
+          [state.post.id || 'unknown']: action.payload
+        }
+      }
     case 'SORT_BY_SOMETHING':
       if(action.payload === 'maximum')
         return {...state, sorted: state.list((a,b) => b.voteScore-a.voteScore)};

@@ -87,7 +87,7 @@ export function votePost(postId,vote) {
       })
       .catch(e => {
         console.log('***', e.response)
-        return e.response.data // what if e.response if undefined?*/
+        // return e.response.data // what if e.response if undefined?*/
       })
 
   }

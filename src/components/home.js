@@ -2,16 +2,16 @@ import React, {Component} from 'react'
 import Select from 'react-select'
 import Loader from './loader'
 import PostCard from './postCard'
-
+import Category from './category'
 class Home extends Component {
 
 
-  /*renderCategories() {
+  renderCategories() {
     const {list} = this.props.category
     return list ? list.map((ct,i) => {
       return <Category key={i} data={ct}/>
       }) : <Loader/>
-  }*/
+  }
 
   renderPosts() {
     const {sorted} = this.props.post
@@ -35,12 +35,13 @@ class Home extends Component {
     ];
     return (
       <div className="container">
+        {this.renderCategories()}
         <Select
           name="sort-selection"
           options={options}
           value={``}
           onChange={this.selectSort.bind(this)}
-          className="select-sort"
+          className="select-sort m-bot-3"
         />
         {this.renderPosts()}
       </div>

@@ -12,13 +12,36 @@ const post = (state = {}, action) => {
         ...state,
         post: action.payload
       }
+    case 'CREATE_COMMENT_RESOLVED':
+      let {comments} = state
+      comments[state.post.id].push(action.payload)
+      comments[state.post.id].sort((a,b) => b.voteScore - a.voteScore)
+      return {
+        ...state,
+        comments: comments
+
+      }
     case 'GET_POST_COMMENTS_RESOLVED':
       return {
         ...state,
         comments: {
-          [state.post.id || 'unknown']: action.payload
+          [state.post.id || 'unknown']: action.payload.sort((a,b) => b.voteScore - a.voteScore)
         }
       }
+    case 'VOTE_POST_RESOLVED':
+      return {
+        ...state,
+        post: action.payload
+      }
+
+    case 'VOTE_COMMENT_RESOLVED':
+      let root = {...state.comments},
+        subRoot = root[action.payload.parentId],
+        index = subRoot.findIndex(x => x.id === action.payload.id)
+      subRoot[index] = action.payload
+      subRoot.sort((a,b) => b.voteScore - a.voteScore)
+      root[action.payload.parentId] = subRoot
+      return {...state, comments: root}
     case 'SORT_BY_SOMETHING':
       if(action.payload === 'maximum')
         return {...state, sorted: state.list((a,b) => b.voteScore-a.voteScore)};

@@ -73,25 +73,25 @@ export function createComment(data) {
 };
 
 
-/*export function votePost(postId,vote) {
+export function voteComment(commentId,vote) {
   const data = {
     option: vote
   }
   return function (dispatch) {
-    return axios.post(`${API_URL}posts/${postId}/`,data)
+    return axios.post(`${API_URL}comments/${commentId}/`,data)
       .then(result => {
-        dispatch({type:'VOTE_POST_RESOLVED', payload: result.data});
+        dispatch({type:'VOTE_COMMENT_RESOLVED', payload: result.data});
         return result.data
       })
       .catch(e => {
         console.log('***', e.response)
-        return e.response.data // what if e.response if undefined?*!/
+        return e.response.data // what if e.response if undefined?*/
       })
 
   }
-};*/
+};
 
-export function editPost(commentId,data) {
+export function editComment(commentId,data) {
 
   /*
    PARAMS:

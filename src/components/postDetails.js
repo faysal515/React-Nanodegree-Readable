@@ -19,7 +19,13 @@ class PostDetails extends Component {
     const {id} = this.props.match.params
     //console.log('>>>.', this.props.post)
     const list = this.props.post.comments[id]
-    return list ? list.map(l => <Comment voteComment={this.props.voteComment} key={l.id} data={l}/>) : null
+    return list ? list.map(l =>
+        <Comment
+          key={l.id} data={l}
+          voteComment={this.props.voteComment}
+          editComment={this.props.editComment}
+          deleteComment={this.props.deleteComment}
+        />) : null
   }
 
   deleteModal() {

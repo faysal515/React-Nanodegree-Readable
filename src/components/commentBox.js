@@ -16,10 +16,10 @@ const CommentBox = (props) => {
   return (
     <form id="example-form">
       <div>
-        <textarea name="author" className="form-control comment-box" rows="2" placeholder="Write your name .... "/>
+        <input type="text" name="author" className="form-control comment-box" rows="1" placeholder="Write your name .... "/>
       </div>
       <div>
-        <textarea name="body" className="form-control comment-box" rows="4" placeholder="Write a comment .... "/>
+        <textarea name="body" className="form-control comment-box" rows="3" placeholder="Write a comment .... "/>
       </div>
       <div>
         <button type="submit" className="publish-bttn" onClick={e => submit(e)}>Publish</button>

@@ -169,6 +169,10 @@ button:focus {
     font-size: 13px;
     border:none;
 }
+
+.action-bttn:disabled {
+    cursor: not-allowed;
+}
 .comment-box{
     margin: 10px 0 0;
     /*display: table;*/

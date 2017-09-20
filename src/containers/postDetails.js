@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getPostsById, deletePost, votePost} from '../actions/posts'
-import {getCommentsOfPost, createComment,voteComment} from '../actions/comments'
+import {getCommentsOfPost, createComment, editComment,voteComment, deleteComment} from '../actions/comments'
 import PostDetails from '../components/postDetails'
 import Loader from '../components/loader'
 
@@ -40,6 +40,8 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     deletePost: (id) => dispatch(deletePost(id)),
     getCommentsOfPost: id => dispatch(getCommentsOfPost(id)),
     publishComment: data => dispatch(createComment(data)),
+    editComment: (commentId, data) => dispatch(editComment(commentId,data)),
+    deleteComment: (id) => dispatch(deleteComment(id)),
     votePost: (postId,vote) => dispatch(votePost(postId, vote)),
     voteComment: (commentId, vote) => dispatch(voteComment(commentId,vote))
   }

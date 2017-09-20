@@ -7,7 +7,7 @@ const Category = (props) => {
   const {data} = props
   return (
     <div className="dib" onClick={() => props.history.push(`/category/${data.path}`)}>
-      <div className="category-name">React</div>
+      <div className="category-name">{data.name}</div>
     </div>
   )
 }

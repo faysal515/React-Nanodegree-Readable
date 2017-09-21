@@ -1,6 +1,7 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import logger from 'redux-logger'
 import thunk from 'redux-thunk';
+import {reducer as notifications} from 'react-notification-system-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 
@@ -9,7 +10,8 @@ import post from './reducers/post'
 
 const rootReducer = combineReducers({
   category,
-  post
+  post,
+  notifications
 });
 
 const middlewares = [

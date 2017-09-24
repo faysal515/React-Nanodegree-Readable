@@ -26,7 +26,9 @@ export function getPostsById(id) {
       })
       .catch(e => {
         console.log('***', e.response)
+        dispatch({type:'GET_SINGLE_POST_REJECTED', payload: null});
         throw new Error('dat fetch failed')
+
        // return e // what if e.response if undefined?*/
       })
 

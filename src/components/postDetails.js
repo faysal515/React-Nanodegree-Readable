@@ -71,7 +71,7 @@ class PostDetails extends Component {
             <DownArrow onClick={() =>this.props.votePost(post.id,'downVote')} />
           </div>
           <div className="flr">
-            <button className="action-bttn">Edit</button>
+            <button className="action-bttn" onClick={e => this.props.history.push(`/create?edit=${post.id}`)}>Edit</button>
             <button onClick={e => this.setState({visible: true})} className="action-bttn">Delete</button>
           </div>
         </div>

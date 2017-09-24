@@ -2,10 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {getCategories} from '../actions/category'
-import { createPost } from '../actions/posts'
+import { getPostsById, createPost } from '../actions/posts'
 import serialize from 'form-serialize'
 import Notifications, { success,error } from 'react-notification-system-redux';
 import uuidv1 from 'uuid/v1'
+import queryString from 'query-string'
 import Loader from './loader'
 import Select from 'react-select'
 
@@ -14,12 +15,22 @@ class CreatePost extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedCategory: ''
+      selectedCategory: '',
+      isEditing : queryString.parse(props.location.search).edit
     }
   }
 
   componentDidMount() {
+    const {isEditing} = this.state
     this.props.getCategories()
+    console.log('STATE ', this.state)
+    if(isEditing)
+      this.props.getPost(isEditing)
+        .then(res => {
+          console.log('>> ', res)
+          this.setState({selectedCategory:{value:res.category, label:res.category}})
+        })
+        .catch(e => this.props.history.push('/'))
   }
 
   logChange(val) {
@@ -38,7 +49,7 @@ class CreatePost extends Component {
       position: 'tr',
       autoDismiss: 2,
     })*/
-    
+
     this.props.createPost({
       ...data,
       id: uuidv1(),
@@ -57,35 +68,30 @@ class CreatePost extends Component {
           autoDismiss: 2,
         })
       })
-    
+
   }
 
   render() {
-    /*let options = [
-      {value: 'one', label: 'cate 1'},
-      {value: 'two', label: 'cate 2'},
-      {value: 'three', label: 'cate 3'}
-    ];*/
     let categories = this.props.category.list,
       options = categories ? categories.map(c => {
       return {value: c.name, label : c.name}
       }) : []
 
-    console.log(options)
-
-
-    return (
+    let {isEditing} = this.state,
+      {post} = this.props.post
+    //isEditing && this.props
+    return (isEditing && post) || !isEditing ?
         <div className="container m-top-3">
             <div>
                 <h3 className="m-bot-3"><b>Create Post</b></h3>
                 <form id="create-post">
                     <div className="form-group">
                         <label htmlFor="exampleInput1">Title</label>
-                        <input type="text" className="form-control" name="title"/>
+                        <input defaultValue={post ? post.title : ''} type="text" className="form-control" name="title"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInput2">Author</label>
-                        <input type="text" className="form-control" name="author"/>
+                        <input type="text" defaultValue={post ? post.author : ''} className="form-control" name="author"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="category">Category</label>
@@ -102,19 +108,20 @@ class CreatePost extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputDescription">Body</label>
-                        <textarea className="form-control" name="body" id="" cols="30" rows="10"/>
+                        <textarea defaultValue={post ? post.body : ''} className="form-control" name="body" id="" cols="30" rows="10"/>
                     </div>
                     <button type="submit" className="btn btn-default" onClick={this.handleSubmit.bind(this)}>Submit</button>
                 </form>
             </div>
-        </div>
-    )
+        </div> : null
+
   }
 }
 
 const mapStateToProps = (store,ownProps) => {
   return {
-    category: store.category
+    category: store.category,
+    post: store.post
   }
 
 }
@@ -123,6 +130,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
   return {
     getCategories : () => dispatch(getCategories()),
     createPost: (data) => dispatch(createPost(data)),
+    getPost: (id) => dispatch(getPostsById(id)),
     error: (opt) => dispatch(error(opt)),
     success: (opt) => dispatch(success(opt))
   }

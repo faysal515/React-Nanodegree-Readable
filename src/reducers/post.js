@@ -4,10 +4,11 @@ const post = (state = {}, action) => {
 
   switch (action.type) {
     case 'GET_POST_RESOLVED':
+      let valid  = action.payload.filter(f => !f.deleted)
       return {
         ...state,
-        list: action.payload,
-        sorted: action.payload.sort((a, b) => b.voteScore - a.voteScore)
+        list: valid,
+        sorted: valid.sort((a, b) => b.voteScore - a.voteScore)
       };
 
     case 'GET_SINGLE_POST_RESOLVED':
@@ -66,6 +67,12 @@ const post = (state = {}, action) => {
       root[action.payload.parentId] = subRoot
       return {...state, comments: root}
 
+    /*case 'DELETE_POST_RESOLVED':
+      return {
+        ...state,
+        post: null
+      }
+*/
 
     case 'SORT_BY_SOMETHING':
       if (action.payload === 'maximum')

@@ -39,7 +39,9 @@ export function getPostsByCategory(category) {
   return function (dispatch) {
     return axios.get(`${API_URL}${category}/posts/`)
       .then(result => {
-        dispatch({type:'GET_POST_BY_CATEGORY_RESOLVED', payload: result.data});
+        //GET_POST_RESOLVED
+        // dispatch({type:'GET_POST_BY_CATEGORY_RESOLVED', payload: result.data});
+        dispatch({type:'GET_POST_RESOLVED', payload: result.data});
         return result.data
       })
       .catch(e => {
@@ -117,11 +119,10 @@ export function editPost(postId,data) {
 };
 
 export function deletePost(postId) {
-  // @todo Sets the parentDeleted flag for all child comments to 'true'. EKHANE KAJ BAKI ACHE
   return function (dispatch) {
     return axios.delete(`${API_URL}posts/${postId}/`)
       .then(result => {
-        dispatch({type:'EDIT_POST_RESOLVED', payload: result.data});
+        dispatch({type:'DELETE_POST_RESOLVED', payload: result.data});
         return result.data
       })
       .catch(e => {

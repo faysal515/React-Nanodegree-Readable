@@ -28,12 +28,23 @@ class PostDetails extends Component {
         />) : null
   }
 
+  handleDelete(id) {
+    this.props.deletePost(id)
+      .then(res => {
+        console.log('>> ', this)
+        this.props.history.push('/')
+      })
+  }
+
   deleteModal() {
     const {id} = this.props.match.params
     return (
-      <Rodal visible={this.state.visible} onClose={e => this.setState({visible:false}) }>
-        <div>Are you sure to delete this post ?</div>
-        <button className="btn btn-danger" onClick={e => this.props.deletePost(id)}>Confirm</button>
+
+      <Rodal
+        height={150}
+        visible={this.state.visible} onClose={e => this.setState({visible:false}) }>
+        <div className="modal-text">Are you sure to delete this post ?</div>
+        <button className="btn btn-danger modal-close" onClick={e => this.handleDelete(id)}>Delete</button>
       </Rodal>
     )
   }
@@ -53,15 +64,6 @@ class PostDetails extends Component {
           {post.title}
         </p>
         <p className="post-des">
-          {/*Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-           Consectetur enim obcaecati quasi, quisquam recusandae repudiandae voluptatum?
-           Et saepe vitae voluptates? A ducimus maxime mollitia necessitatibus, nihil
-           perferendis quis quisquam repudiandae sapiente similique veritatis voluptate.
-           Ab aperiam delectus deleniti earum est eum maiores natus nisi nostrum omnis quam,
-           rerum similique sint soluta suscipit. Accusantium asperiores aut cum fuga harum illo
-           iure nostrum praesentium quaerat quas quisquam quod quos, reprehenderit sapiente voluptatem!
-           Adipisci animi aperiam beatae consequatur cum cumque deserunt ea esse est exercitationem harum labore magnam,
-           neque numquam officia optio praesentium quam quas quasi quia quod ratione repellendus, saepe totam voluptatibus.*/}
           {post.body}
         </p>
         <div>

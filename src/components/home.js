@@ -4,8 +4,12 @@ import Loader from './loader'
 import PostCard from './postCard'
 import Category from './category'
 class Home extends Component {
-
-
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedSort: ''
+    }
+  }
   renderCategories() {
     const {list} = this.props.category
     return list ? list.map((ct,i) => {
@@ -22,7 +26,7 @@ class Home extends Component {
 
   selectSort(val) {
     console.log("Selected: " + JSON.stringify(val));
-    //this.setState({selectedSort:val})
+    this.setState({selectedSort:val})
     this.props.changeSort(val.value)
   }
 
@@ -39,7 +43,7 @@ class Home extends Component {
         <Select
           name="sort-selection"
           options={options}
-          value={``}
+          value={this.state.selectedSort}
           onChange={this.selectSort.bind(this)}
           className="select-sort m-bot-3"
         />

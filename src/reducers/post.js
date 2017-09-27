@@ -76,7 +76,7 @@ const post = (state = {}, action) => {
 
     case 'SORT_BY_SOMETHING':
       if (action.payload === 'maximum')
-        return {...state, sorted: state.list((a, b) => b.voteScore - a.voteScore)};
+        return {...state, sorted: state.list.sort((a, b) => b.voteScore - a.voteScore)};
       else if (action.payload === 'minimum')
         return {...state, sorted: state.list.sort((a, b) => a.voteScore - b.voteScore)};
       else if (action.payload === 'oldest')

@@ -8,9 +8,8 @@ import {getReadableDate} from '../utils'
 const PostCard = (props) => {
   const {data} = props
   return (
-    <div className="container">
-      <div className="row m-top">
-        <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 post-wrap">
+
+        <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 post-wrap marpadzero">
           <div className="post-card pcard">
             <div className="pcard-od">
               <div className="pcard-od-front">
@@ -29,8 +28,6 @@ const PostCard = (props) => {
               </div>
           </div>
         </div>
-      </div>
-    </div>
   );
 }
 /*

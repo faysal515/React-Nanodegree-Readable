@@ -42,14 +42,6 @@ class CreatePost extends Component {
     event.preventDefault()
     let form = document.querySelector('#create-post')
     let data = serialize(form, {hash: true})
-    // console.log(data,this)
-    /*this.props.error({
-      title: 'Sorry :(',
-      message: 'Please check your input fields properly',
-      position: 'tr',
-      autoDismiss: 2,
-    })*/
-
     this.props.createPost({
       ...data,
       id: uuidv1(),
@@ -87,11 +79,11 @@ class CreatePost extends Component {
                 <form id="create-post">
                     <div className="form-group">
                         <label htmlFor="exampleInput1">Title</label>
-                        <input defaultValue={post ? post.title : ''} type="text" className="form-control" name="title"/>
+                        <input defaultValue={post && isEditing ? post.title : ''} type="text" className="form-control" name="title"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInput2">Author</label>
-                        <input type="text" defaultValue={post ? post.author : ''} className="form-control" name="author"/>
+                        <input type="text" defaultValue={post && isEditing ? post.author : ''} className="form-control" name="author"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="category">Category</label>
@@ -108,7 +100,7 @@ class CreatePost extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputDescription">Body</label>
-                        <textarea defaultValue={post ? post.body : ''} className="form-control" name="body" id="" cols="30" rows="10"/>
+                        <textarea defaultValue={post && isEditing ? post.body : ''} className="form-control" name="body" id="" cols="30" rows="10"/>
                     </div>
                     <button type="submit" className="btn btn-default" onClick={this.handleSubmit.bind(this)}>Submit</button>
                 </form>

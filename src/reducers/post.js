@@ -80,9 +80,9 @@ const post = (state = {}, action) => {
       else if (action.payload === 'minimum')
         return {...state, sorted: state.list.sort((a, b) => a.voteScore - b.voteScore)};
       else if (action.payload === 'oldest')
-        return {...state, sorted: state.list.sort((a, b) => b.timestamp - a.timestamp)};
-      else if (action.payload === 'newest')
         return {...state, sorted: state.list.sort((a, b) => a.timestamp - b.timestamp)};
+      else if (action.payload === 'newest')
+        return {...state, sorted: state.list.sort((a, b) => b.timestamp - a.timestamp)};
       else return state
     default:
       return state;

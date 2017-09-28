@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
-//onClick={() => props.history.push(`/category/${data.path}`)}
+
 const Category = (props) => {
   const {data} = props
   const currentRoute = props.match.params.id

@@ -4,7 +4,7 @@ const post = (state = {}, action) => {
 
   switch (action.type) {
     case 'GET_POST_RESOLVED':
-      let valid  = action.payload.filter(f => !f.deleted)
+      let valid = action.payload.filter(f => !f.deleted)
       return {
         ...state,
         list: valid,
@@ -62,17 +62,17 @@ const post = (state = {}, action) => {
         subRoot = root[action.payload.parentId],
         index = subRoot.findIndex(c => c.id === action.payload.id)
 
-      subRoot.splice(index,1)
+      subRoot.splice(index, 1)
 
       root[action.payload.parentId] = subRoot
       return {...state, comments: root}
 
     /*case 'DELETE_POST_RESOLVED':
-      return {
-        ...state,
-        post: null
-      }
-*/
+     return {
+     ...state,
+     post: null
+     }
+     */
 
     case 'SORT_BY_SOMETHING':
       if (action.payload === 'maximum')

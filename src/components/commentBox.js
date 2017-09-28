@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom'
-import moment from 'moment'
-import {getReadableDate} from '../utils'
 import serialize from 'form-serialize'
 import uuidv1 from 'uuid/v1'
+
 const CommentBox = (props) => {
   const submit = e => {
     e.preventDefault()

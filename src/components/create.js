@@ -2,12 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {getCategories} from '../actions/category'
-import { getPostsById, createPost } from '../actions/posts'
+import {getPostsById, createPost} from '../actions/posts'
 import serialize from 'form-serialize'
-import Notifications, { success,error } from 'react-notification-system-redux';
+import {success, error} from 'react-notification-system-redux';
 import uuidv1 from 'uuid/v1'
 import queryString from 'query-string'
-import Loader from './loader'
 import Select from 'react-select'
 
 
@@ -16,7 +15,7 @@ class CreatePost extends Component {
     super(props)
     this.state = {
       selectedCategory: '',
-      isEditing : queryString.parse(props.location.search).edit
+      isEditing: queryString.parse(props.location.search).edit
     }
   }
 
@@ -24,11 +23,11 @@ class CreatePost extends Component {
     const {isEditing} = this.state
     this.props.getCategories()
     console.log('STATE ', this.state)
-    if(isEditing)
+    if (isEditing)
       this.props.getPost(isEditing)
         .then(res => {
           console.log('>> ', res)
-          this.setState({selectedCategory:{value:res.category, label:res.category}})
+          this.setState({selectedCategory: {value: res.category, label: res.category}})
         })
         .catch(e => this.props.history.push('/'))
   }
@@ -46,10 +45,9 @@ class CreatePost extends Component {
       ...data,
       id: uuidv1(),
       timestamp: Date.now()
-    }).
-      then(res => {
+    }).then(res => {
       form.reset()
-      this.props.success({title: 'post saved', autoDismiss:2})
+      this.props.success({title: 'post saved', autoDismiss: 2})
       this.props.history.push(`/`)
     })
       .catch(e => {
@@ -66,51 +64,54 @@ class CreatePost extends Component {
   render() {
     let categories = this.props.category.list,
       options = categories ? categories.map(c => {
-      return {value: c.name, label : c.name}
-      }) : []
+          return {value: c.name, label: c.name}
+        }) : []
 
     let {isEditing} = this.state,
       {post} = this.props.post
     //isEditing && this.props
     return (isEditing && post) || !isEditing ?
-        <div className="container m-top-3">
-            <div>
-                <h3 className="m-bot-3"><b>Create Post</b></h3>
-                <form id="create-post">
-                    <div className="form-group">
-                        <label htmlFor="exampleInput1">Title</label>
-                        <input defaultValue={post && isEditing ? post.title : ''} type="text" className="form-control" name="title"/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInput2">Author</label>
-                        <input type="text" defaultValue={post && isEditing ? post.author : ''} className="form-control" name="author"/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="category">Category</label>
-                      {categories
-                        ?
-                        <Select
-                          name="category"
-                          options={options}
-                          value={this.state.selectedCategory}
-                          onChange={this.logChange.bind(this)}
-                        /> : null
-                      }
-
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputDescription">Body</label>
-                        <textarea defaultValue={post && isEditing ? post.body : ''} className="form-control" name="body" id="" cols="30" rows="10"/>
-                    </div>
-                    <button type="submit" className="btn btn-default" onClick={this.handleSubmit.bind(this)}>Submit</button>
-                </form>
+      <div className="container m-top-3">
+        <div>
+          <h3 className="m-bot-3"><b>Create Post</b></h3>
+          <form id="create-post">
+            <div className="form-group">
+              <label htmlFor="exampleInput1">Title</label>
+              <input defaultValue={post && isEditing ? post.title : ''} type="text" className="form-control"
+                     name="title"/>
             </div>
-        </div> : null
+            <div className="form-group">
+              <label htmlFor="exampleInput2">Author</label>
+              <input type="text" defaultValue={post && isEditing ? post.author : ''} className="form-control"
+                     name="author"/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="category">Category</label>
+              {categories
+                ?
+                <Select
+                  name="category"
+                  options={options}
+                  value={this.state.selectedCategory}
+                  onChange={this.logChange.bind(this)}
+                /> : null
+              }
+
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputDescription">Body</label>
+              <textarea defaultValue={post && isEditing ? post.body : ''} className="form-control" name="body" id=""
+                        cols="30" rows="10"/>
+            </div>
+            <button type="submit" className="btn btn-default" onClick={this.handleSubmit.bind(this)}>Submit</button>
+          </form>
+        </div>
+      </div> : null
 
   }
 }
 
-const mapStateToProps = (store,ownProps) => {
+const mapStateToProps = (store, ownProps) => {
   return {
     category: store.category,
     post: store.post
@@ -118,9 +119,9 @@ const mapStateToProps = (store,ownProps) => {
 
 }
 
-const mapDispatchToProps = (dispatch,ownProps) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getCategories : () => dispatch(getCategories()),
+    getCategories: () => dispatch(getCategories()),
     createPost: (data) => dispatch(createPost(data)),
     getPost: (id) => dispatch(getPostsById(id)),
     error: (opt) => dispatch(error(opt)),
@@ -128,4 +129,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CreatePost)
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost)

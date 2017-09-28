@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Home from '../components/home';
 import {getCategories} from '../actions/category'
-import {getPosts, getPostsByCategory} from '../actions/posts'
+import {getPostsByCategory} from '../actions/posts'
 
 class CategoryViewContainer extends Component {
 

@@ -42,8 +42,27 @@
 }
 
 /*postcard css*/
-.post-wrap>.post-card{
+.post-wrap>.post-card, .post-wrap>.post-card:hover{
+    border-radius: 5px;
     transition: box-shadow .3s linear;
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+}
+
+.hero-nav{
+    background-color: #36A2EB !important;
+    border-radius: 0 !important;
+    border-color: #36A2EB !important;
+}
+
+.hero-nav .navbar-brand{
+    color: #fff !important;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.hero-nav .navbar-nav>li>a{
+    font-size: 18px;
+    color: #fff !important;
 }
 /*utils css*/
 .dib {
@@ -79,10 +98,25 @@ button:focus {
 .m-top-1p5{
     margin-top: 1.5rem;
 }
+.m-left-1{
+    margin-left: 1rem;
+}
 .min-height{
     min-height: 20rem;
 }
+.marpadzero{
+    margin: 0;
+    padding: 0;
+}
+.pad-3{
+    padding: 3rem;
+}
 /*utils css*/
+
+.post-title {
+    font-size: 20px;
+}
+
 .post-card{
     position: relative;
     height: 25rem;
@@ -111,16 +145,19 @@ button:focus {
 }
 .post-like{
     position: absolute;
-    right: 7rem;
+    right: 1rem;
+    border: 1px solid red;
+    padding: 0.5rem;
+    border-radius: 5px
 }
 .pcard{
     width: 85%;
 }
-.select-sort{
-    margin-top: 1rem;
-    margin-left: 1.5rem;
-    width: 20%;
-}
+/*.select-sort{*/
+    /*margin-top: 1rem;*/
+    /*margin-left: 1.5rem;*/
+    /*width: 20%;*/
+/*}*/
 /*postcard css*/
 
 /*postdetails css*/
@@ -149,7 +186,7 @@ button:focus {
 .like-bttn{
     width: 14px;
     height: 14px;
-    margin-left: 0.3rem;
+    margin-left: 1rem;
     vertical-align: middle;
     cursor: pointer;
 }
@@ -231,14 +268,13 @@ button:focus {
     padding: 1rem;
     margin: 1rem;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 14px;
     cursor: pointer;
 }
 
 .active-category{
     background-color: dodgerblue;
     color: #fff;
-    font-size: 20px;
     font-weight: 600;
 }
 
@@ -251,4 +287,16 @@ button:focus {
 .modal-text{
     font-size: 20px;
     font-weight: 600;
+}
+
+.select-sort{
+    margin-left: 0rem !important;
+}
+
+.like-icon{
+    margin-left: 0.5rem;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    fill: red;
 }

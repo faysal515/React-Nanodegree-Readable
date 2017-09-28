@@ -8,6 +8,8 @@ import 'font-awesome/css/font-awesome.min.css'
 
 import routes from './router'
 import Notif from './components/notifications.js'
+import HomeNav from './components/homenav'
+
 
 
 class App extends Component {

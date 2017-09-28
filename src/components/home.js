@@ -3,6 +3,18 @@ import Select from 'react-select'
 import Loader from './loader'
 import PostCard from './postCard'
 import Category from './category'
+import HomeNav from './homenav'
+
+// const Banner = () =>{
+//     return(
+//         <div className="banner-bg">
+//             <h1><b>Bloggie</b></h1>
+//             <h3>A place to share your knowledge through social blogging.</h3>
+//         </div>
+//     )
+// }
+
+
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -19,9 +31,16 @@ class Home extends Component {
 
   renderPosts() {
     const {sorted} = this.props.post
-    return sorted ? sorted.map((pc,i) => {
-        return <PostCard key={i} data={pc}/>
-      }) : <Loader/>
+
+      return <div>
+          <div className="row m-top">
+              {
+                  sorted ? sorted.map((pc,i) => {
+                  return <PostCard key={i} data={pc}/>
+              })
+                      : <Loader/>
+              }
+          </div></div>
   }
 
   selectSort(val) {
@@ -38,19 +57,32 @@ class Home extends Component {
       { value: 'oldest', label: 'oldest' }
     ];
     return (
-      <div className="container">
-        {this.renderCategories()}
-        <Select
-          name="sort-selection"
-          options={options}
-          value={this.state.selectedSort}
-          onChange={this.selectSort.bind(this)}
-          className="select-sort m-bot-3"
-        />
-        {this.renderPosts()}
-      </div>
+        <div>
+            <div className="pad-3">
+                <div className="row">
+                    <div className="col-lg-10">
+                        <div className="row">
+                          <div className="col-xs-10 col-md-3">
+                            <h4>Sort Posts by Vote Count</h4>
+                            <Select
+                              name="sort-selection"
+                              options={options}
+                              value={this.state.selectedSort}
+                              onChange={this.selectSort.bind(this)}
+                              className="select-sort m-bot-3"
+                            />
+                          </div>
+                        </div>
 
-
+                        {this.renderPosts()}
+                    </div>
+                    <div className="col-lg-2">
+                        <h4 className="m-left-1">Categories</h4>
+                        {this.renderCategories()}
+                    </div>
+                </div>
+            </div>
+        </div>
     )
   }
 }

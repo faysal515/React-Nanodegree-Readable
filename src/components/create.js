@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {getCategories} from '../actions/category'
-import {getPostsById, createPost} from '../actions/posts'
+import {getPostsById, createPost, editPost} from '../actions/posts'
 import serialize from 'form-serialize'
 import {success, error} from 'react-notification-system-redux';
 import uuidv1 from 'uuid/v1'
@@ -46,7 +46,9 @@ class CreatePost extends Component {
         ...formData,
         id: uuidv1(),
         timestamp: Date.now()
-      }
+      },
+      edit = this.state.isEditing
+
 
 
     let validate = this.validator(data)
@@ -62,19 +64,37 @@ class CreatePost extends Component {
     }
 
 
-    this.props.createPost(data).then(res => {
-      form.reset()
-      this.props.success({title: 'post saved', autoDismiss: 2})
-      this.props.history.push(`/`)
-    })
-      .catch(e => {
-        this.props.error({
-          title: 'Sorry :(',
-          message: 'Server fails to insert data. please try later',
-          position: 'tr',
-          autoDismiss: 2,
-        })
+    if(Boolean(edit)) {
+      this.props.editPost(edit,{title: data.title,body:data.body}).then(res => {
+        form.reset()
+        this.props.success({title: 'Post Edited successfully', autoDismiss: 2})
+        this.props.history.push(`/`)
       })
+        .catch(e => {
+          this.props.error({
+            title: 'Sorry :(',
+            message: 'Server fails to update data. please try later',
+            position: 'tr',
+            autoDismiss: 2,
+          })
+        })
+    } else {
+      this.props.createPost(data).then(res => {
+        form.reset()
+        this.props.success({title: 'post saved', autoDismiss: 2})
+        this.props.history.push(`/`)
+      })
+        .catch(e => {
+          this.props.error({
+            title: 'Sorry :(',
+            message: 'Server fails to insert data. please try later',
+            position: 'tr',
+            autoDismiss: 2,
+          })
+        })
+    }
+
+
 
   }
 
@@ -109,13 +129,14 @@ class CreatePost extends Component {
             <div className="form-group">
               <label htmlFor="exampleInput2">Author</label>
               <input type="text" defaultValue={post && isEditing ? post.author : ''} className="form-control"
-                     name="author"/>
+                     disabled={Boolean(isEditing)}  name="author"/>
             </div>
             <div className="form-group">
               <label htmlFor="category">Category</label>
               {categories
                 ?
                 <Select
+                  disabled={Boolean(isEditing)}
                   name="category"
                   options={options}
                   value={this.state.selectedCategory}
@@ -149,6 +170,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getCategories: () => dispatch(getCategories()),
     createPost: (data) => dispatch(createPost(data)),
+    editPost: (postId,data) => dispatch(editPost(postId,data)),
     getPost: (id) => dispatch(getPostsById(id)),
     error: (opt) => dispatch(error(opt)),
     success: (opt) => dispatch(success(opt))

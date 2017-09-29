@@ -8,6 +8,7 @@ import {success, error} from 'react-notification-system-redux';
 import uuidv1 from 'uuid/v1'
 import queryString from 'query-string'
 import Select from 'react-select'
+import intersection from 'lodash/intersection'
 
 
 class CreatePost extends Component {
@@ -39,13 +40,29 @@ class CreatePost extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    let form = document.querySelector('#create-post')
-    let data = serialize(form, {hash: true})
-    this.props.createPost({
-      ...data,
-      id: uuidv1(),
-      timestamp: Date.now()
-    }).then(res => {
+    let form = document.querySelector('#create-post'),
+      formData = serialize(form, {hash: true}),
+      data = {
+        ...formData,
+        id: uuidv1(),
+        timestamp: Date.now()
+      }
+
+
+    let validate = this.validator(data)
+    if (!validate) {
+      this.props.error({
+        title: 'Sorry :(',
+        message: 'Please check your input fields properly',
+        position: 'tr',
+        autoDismiss: 2,
+      })
+
+      return
+    }
+
+
+    this.props.createPost(data).then(res => {
       form.reset()
       this.props.success({title: 'post saved', autoDismiss: 2})
       this.props.history.push(`/`)
@@ -53,7 +70,7 @@ class CreatePost extends Component {
       .catch(e => {
         this.props.error({
           title: 'Sorry :(',
-          message: 'Please check your input fields properly',
+          message: 'Server fails to insert data. please try later',
           position: 'tr',
           autoDismiss: 2,
         })
@@ -61,11 +78,20 @@ class CreatePost extends Component {
 
   }
 
+  validator(data) {
+    let requiredKeys = ['title', 'author', 'body', 'category'],
+      dataKeys = Object.keys(data)
+
+    return intersection(requiredKeys, dataKeys).length === requiredKeys.length
+
+
+  }
+
   render() {
     let categories = this.props.category.list,
       options = categories ? categories.map(c => {
-          return {value: c.name, label: c.name}
-        }) : []
+        return {value: c.name, label: c.name}
+      }) : []
 
     let {isEditing} = this.state,
       {post} = this.props.post

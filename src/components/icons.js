@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import {Link} from 'react-router-dom'
 
 export const UpArrow = props => {
   return (
@@ -39,5 +39,15 @@ export const HeartIcon = props => {
         d="M6 18c-.6 0-1-.4-1-1C5 11.7 9.5 7 15 7c.6 0 1 .5 1 1s-.4 1-1 1c-4.4 0-8 3.7-8 8 0 .6-.4 1-1 1z"/>
       </svg>
     </span>
+  )
+}
+
+
+export const NotFound = props => {
+  return (
+    <div>
+      <h1>The post you are looking is not found</h1>
+      <h1><Link to={`/`}>Go to Home</Link></h1>
+    </div>
   )
 }

@@ -3,8 +3,9 @@ import {getReadableDate} from '../utils'
 import Loader from './loader'
 import Comment from './comment'
 import CommentBox from './commentBox'
-import {UpArrow, DownArrow} from './icons'
+import {UpArrow, DownArrow, NotFound} from './icons'
 import Rodal from 'rodal';
+import isEmpty from 'lodash/isEmpty'
 import 'rodal/lib/rodal.css';
 
 class PostDetails extends Component {
@@ -17,7 +18,6 @@ class PostDetails extends Component {
 
   populateCommentList() {
     const {id} = this.props.match.params
-    //console.log('>>>.', this.props.post)
     const list = this.props.post.comments[id]
     return list ? list.map(l =>
         <Comment
@@ -52,7 +52,8 @@ class PostDetails extends Component {
   render() {
     const {post} = this.props.post
 
-    return post ? <div className="container m-top-3 m-bot-7">
+
+    return !isEmpty(post) ? <div className="container m-top-3 m-bot-7">
       <div>
         <p className="author-name">
           {post.author}
@@ -90,7 +91,7 @@ class PostDetails extends Component {
         </div>
       </div>
       {this.deleteModal()}
-    </div> : <Loader/>
+    </div> : <NotFound/>
   }
 
 }

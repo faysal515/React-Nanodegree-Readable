@@ -1,15 +1,17 @@
 import React, {Component} from 'react'
 import Select from 'react-select'
+import Rodal from 'rodal'
 import Loader from './loader'
 import PostCard from './postCard'
 import Category from './category'
 import HomeNav from './homenav'
+import 'rodal/lib/rodal.css';
 
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedSort: ''
+      selectedSort: '',
     }
   }
 
@@ -22,12 +24,17 @@ class Home extends Component {
 
   renderPosts() {
     const {sorted} = this.props.post
-
     return <div>
       <div className="row m-top">
         {
           sorted ? sorted.map((pc, i) => {
-              return <PostCard key={i} data={pc}/>
+              return <PostCard
+                key={i}
+                data={pc}
+                comments={this.props.post.comments}
+                votePost={this.props.votePost}
+                deletePost={this.props.deletePost}
+              />
             })
             : <Loader/>
         }

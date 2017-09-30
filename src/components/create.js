@@ -33,6 +33,11 @@ class CreatePost extends Component {
         .catch(e => this.props.history.push('/'))
   }
 
+
+  componentWillUnmount() {
+    this.props.clearPost()
+  }
+
   logChange(val) {
     console.log("Selected: " + JSON.stringify(val));
     this.setState({selectedCategory: val})
@@ -171,6 +176,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getCategories: () => dispatch(getCategories()),
     createPost: (data) => dispatch(createPost(data)),
     editPost: (postId,data) => dispatch(editPost(postId,data)),
+    clearPost: () => dispatch({type:'CLEAR_POST'}),
     getPost: (id) => dispatch(getPostsById(id)),
     error: (opt) => dispatch(error(opt)),
     success: (opt) => dispatch(success(opt))

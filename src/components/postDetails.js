@@ -36,6 +36,10 @@ class PostDetails extends Component {
       })
   }
 
+  componentWillUnmount() {
+    this.props.clearPost()
+  }
+
   deleteModal() {
     const {id} = this.props.match.params
     return (

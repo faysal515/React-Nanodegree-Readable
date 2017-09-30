@@ -38,6 +38,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
   return {
     getPost: (id) => dispatch(getPostsById(id)),
     deletePost: (id) => dispatch(deletePost(id)),
+    clearPost: () => dispatch({type:'CLEAR_POST'}),
     getCommentsOfPost: id => dispatch(getCommentsOfPost(id)),
     publishComment: data => dispatch(createComment(data)),
     editComment: (commentId, data) => dispatch(editComment(commentId,data)),

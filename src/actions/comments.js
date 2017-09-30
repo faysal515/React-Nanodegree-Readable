@@ -6,7 +6,7 @@ export function getCommentsOfPost(postId) {
   return function (dispatch) {
     return axios.get(`${API_URL}posts/${postId}/comments/`)
       .then(result => {
-        dispatch({type:'GET_POST_COMMENTS_RESOLVED', payload: result.data});
+        dispatch({type:'GET_POST_COMMENTS_RESOLVED', payload: {parentId: postId, data: result.data}});
         return result.data
       })
       .catch(e => {

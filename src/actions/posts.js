@@ -122,7 +122,7 @@ export function deletePost(postId) {
   return function (dispatch) {
     return axios.delete(`${API_URL}posts/${postId}/`)
       .then(result => {
-        dispatch({type:'DELETE_POST_RESOLVED', payload: result.data});
+        dispatch({type:'DELETE_POST_RESOLVED', payload: postId});
         return result.data
       })
       .catch(e => {

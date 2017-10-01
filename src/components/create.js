@@ -107,7 +107,9 @@ class CreatePost extends Component {
     let requiredKeys = ['title', 'author', 'body', 'category'],
       dataKeys = Object.keys(data)
 
-    return intersection(requiredKeys, dataKeys).length === requiredKeys.length
+    console.log(dataKeys)
+
+    return intersection(requiredKeys, dataKeys).length === requiredKeys.length || this.state.isEditing
 
 
   }

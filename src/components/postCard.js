@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link, withRouter} from 'react-router-dom'
-import {HeartIcon, UpArrow, DownArrow} from './icons'
+import {HeartIcon, UpArrow, DownArrow, CommentIcon, EditIcon, DeleteIcon} from './icons'
 
 import {getReadableDate} from '../utils'
 
@@ -23,22 +23,18 @@ const PostCard = (props) => {
             <p>
               {data.body}
             </p>
-            <p>{hasComment ? comments[data.id].length : 0} {hasComment && comments[data.id].length > 1 ? `comments` : `comment`} </p>
+            <span>{hasComment ? comments[data.id].length : 0} {hasComment && comments[data.id].length > 1 ? `comments` : `comment`}</span><span><CommentIcon/></span>
 
-            <div className="post-like">
-              <span>{data.voteScore}</span>
-              <UpArrow onClick={() => props.votePost(data.id, 'upVote')}/>
-              <DownArrow onClick={() => props.votePost(data.id, 'downVote')}/>
-
-              {/*<span>*/}
-              {/*<HeartIcon/>*/}
-              {/*</span>*/}
+            <div className="post-bttns">
+                <span onClick={() => props.history.push(`/create?edit=${data.id}`)}><EditIcon/></span>
+                <span onClick={() => props.deletePost(data.id)}><DeleteIcon/></span>
+              {/*<CommentIcon/>*/}
             </div>
-            <div>
-              <button type="button" className="btn btn-default" onClick={() => props.history.push(`/create?edit=${data.id}`)}>Edit</button>
-              <button type="button" className="btn btn-danger" onClick={() => props.deletePost(data.id)}>Delete</button>
-
-            </div>
+              <div className="post-like">
+                  <span className="number-position">{data.voteScore}</span>
+                  <UpArrow onClick={() => props.votePost(data.id, 'upVote')}/>
+                  <DownArrow onClick={() => props.votePost(data.id, 'downVote')}/>
+              </div>
           </div>
         </div>
       </div>

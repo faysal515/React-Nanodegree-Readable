@@ -51,3 +51,33 @@ export const NotFound = props => {
     </div>
   )
 }
+
+export const CommentIcon=(props) =>{
+    return(
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" preserveAspectRatio="xMidYMid" className="home-svg va-top">
+                <path d="M13 73h15l.2 13.3c0 .8.5 1.4 1 1.8l1 .5c.4 0 1 0 1.2-.4l19.3-15H87c1 0 2-1 2-2V14c0-1-1-2-2-2H13c-1 0-2 1-2 2v57c0 1 1 2 2 2zm2-57h70v53H50c-.4 0-1 0-1.2.4L32.2 82.2 32 71c0-1-1-2-2-2H15V16z"/><path d="M39 43c0-4-3-7-7-7s-7 3-7 7 3 7 7 7 7-3 7-7zm-10 0c0-1.7 1.3-3 3-3s3 1.3 3 3-1.3 3-3 3-3-1.3-3-3zm22 7c4 0 7-3 7-7s-3-7-7-7-7 3-7 7 3 7 7 7zm0-10c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zm19 10c4 0 7-3 7-7s-3-7-7-7-7 3-7 7 3 7 7 7zm0-10c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3z"/>
+            </svg>
+        </span>
+    )
+}
+
+export const EditIcon=(props) =>{
+    return(
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" preserveAspectRatio="xMidYMid" className="home-svg">
+                <path d="M84.8 25l-10-9.8c-1.3-1.4-3.2-2.2-5.2-2.2s-4 .8-5.3 2.2l-43 43c-1 1-1.6 2-2 3.3l-6 21c-.5 1 0 2.4.8 3.4 1 .2 2 1 3 1 .3 0 .7 0 1-.6l21-6c1-.5 2-1 3-2l43-43c1.5-1.5 2-3.4 2-5.4 0-2-.5-4-2-5.2zm-60 42.3l8 7.8-11 3.7 3-11zm55-36.5L73 37.6 62.4 27l6.8-6.8h.8l10 10v.3l-.2.3z"/>
+            </svg>
+        </span>
+    )
+}
+
+export const DeleteIcon=(props) =>{
+    return(
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" preserveAspectRatio="xMidYMid" className="home-svg">
+                <path d="M14 28.3V89a10.7 10.7 0 0 0 11 11h50a11.2 11.2 0 0 0 2.7-.3A10.6 10.6 0 0 0 86 89V28.2H14zm18 61a3.6 3.6 0 0 1-3.6-4V42.6a3.6 3.6 0 0 1 7-1 4.7 4.7 0 0 1 .3 1.3v42.4a3.6 3.6 0 0 1-3.7 3.8zm18 0a3.6 3.6 0 0 1-3.6-4V42.6a3.6 3.6 0 0 1 7-1 4.7 4.7 0 0 1 .3 1.3v42.4a3.6 3.6 0 0 1-3.7 3.8zm18 0a3.6 3.6 0 0 1-3.6-4V42.5a3.6 3.6 0 0 1 7-1 4.8 4.8 0 0 1 .3 1.3v42.7a3.6 3.6 0 0 1-3.8 3.8zM77.3 8H65.6a8 8 0 0 0-8-8H42.4a8 8 0 0 0-8 8H22.8a12.2 12.2 0 0 0-12.2 12.2 12.3 12.3 0 0 0 .3 2.6h78a12.3 12.3 0 0 0 .3-2.6A12.2 12.2 0 0 0 77.3 8z"/>
+            </svg>
+        </span>
+    )
+}

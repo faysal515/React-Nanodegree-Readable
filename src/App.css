@@ -65,6 +65,9 @@
     color: #fff !important;
 }
 /*utils css*/
+.va-top{
+    vertical-align: top;
+}
 .dib {
     display: inline-block;
 }
@@ -145,13 +148,26 @@ button:focus {
 }
 .post-like{
     position: absolute;
-    right: 1rem;
-    border: 1px solid red;
+    left: 1rem;
     padding: 0.5rem;
     border-radius: 5px
 }
+.post-bttns{
+    position: absolute;
+    right: 1rem;
+}
+.number-position{
+    vertical-align: text-bottom;
+}
 .pcard{
     width: 85%;
+}
+
+.home-svg{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    fill: #8F8F8F;
 }
 /*.select-sort{*/
     /*margin-top: 1rem;*/

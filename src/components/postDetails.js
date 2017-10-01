@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {getReadableDate} from '../utils'
-import Loader from './loader'
 import Comment from './comment'
 import CommentBox from './commentBox'
 import {UpArrow, DownArrow, NotFound} from './icons'

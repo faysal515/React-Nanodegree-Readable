@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
 import {getCategories} from '../actions/category'
 import {getPostsById, createPost, editPost} from '../actions/posts'
 import serialize from 'form-serialize'
@@ -107,7 +106,7 @@ class CreatePost extends Component {
     let requiredKeys = ['title', 'author', 'body', 'category'],
       dataKeys = Object.keys(data)
 
-    return intersection(requiredKeys, dataKeys).length === requiredKeys.length
+    return intersection(requiredKeys, dataKeys).length === requiredKeys.length || this.state.isEditing
   }
 
   render() {

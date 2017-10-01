@@ -1,5 +1,5 @@
 const post = (state = {currentSort: 'maximum'}, action) => {
-  let root, subRoot, index, list, sorted, valid;
+  let root, subRoot, index, list, valid;
 
 
   switch (action.type) {
@@ -33,12 +33,9 @@ const post = (state = {currentSort: 'maximum'}, action) => {
     case 'VOTE_POST_RESOLVED':
 
       list = state.list || []
-        //sorted = state.sorted || []
       let postIndex = list.findIndex(t => t.id === action.payload.id)
-        // sortedListIndex = sorted.findIndex(s => s.id === action.payload.id)
       if (postIndex > -1) {
         list[postIndex] = action.payload
-        // sorted[sortedListIndex] = action.payload
         return {...state, list, post: action.payload, sorted: sortBySomething([...list], state.currentSort)}
       }
       return {
@@ -47,9 +44,9 @@ const post = (state = {currentSort: 'maximum'}, action) => {
       }
 
     case 'VOTE_COMMENT_RESOLVED':
-      root = {...state.comments},
-        subRoot = root[action.payload.parentId],
-        index = subRoot.findIndex(x => x.id === action.payload.id)
+      root = {...state.comments}
+      subRoot = root[action.payload.parentId]
+      index = subRoot.findIndex(x => x.id === action.payload.id)
 
       subRoot[index] = action.payload
       subRoot.sort((a, b) => b.voteScore - a.voteScore)
@@ -57,18 +54,18 @@ const post = (state = {currentSort: 'maximum'}, action) => {
       return {...state, comments: root}
 
     case 'EDIT_COMMENT_RESOLVED':
-      root = {...state.comments},
-        subRoot = root[action.payload.parentId],
-        index = subRoot.findIndex(c => c.id === action.payload.id)
+      root = {...state.comments}
+      subRoot = root[action.payload.parentId]
+      index = subRoot.findIndex(c => c.id === action.payload.id)
 
       subRoot[index] = action.payload
       root[action.payload.parentId] = subRoot
       return {...state, comments: root}
 
     case 'DELETE_COMMENT_RESOLVED':
-      root = {...state.comments},
-        subRoot = root[action.payload.parentId],
-        index = subRoot.findIndex(c => c.id === action.payload.id)
+      root = {...state.comments}
+      subRoot = root[action.payload.parentId]
+      index = subRoot.findIndex(c => c.id === action.payload.id)
 
       subRoot.splice(index, 1)
 

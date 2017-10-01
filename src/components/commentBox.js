@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import serialize from 'form-serialize'
 import uuidv1 from 'uuid/v1'
 

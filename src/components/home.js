@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
 import Select from 'react-select'
-import Rodal from 'rodal'
 import Loader from './loader'
 import PostCard from './postCard'
 import Category from './category'
-import HomeNav from './homenav'
 import 'rodal/lib/rodal.css';
 
 class Home extends Component {

@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Home from '../components/home';
 import {getCategories} from '../actions/category'
-import {getPostsByCategory} from '../actions/posts'
+import {getCommentsOfPost} from '../actions/comments'
+import {getPostsByCategory, deletePost, votePost} from '../actions/posts'
 
 class CategoryViewContainer extends Component {
 
@@ -35,6 +36,9 @@ const mapDispatchToProps = (dispatch,ownProps) => {
   return {
     getCategories : () => dispatch(getCategories()),
     getPostsByCategory: (id) => dispatch(getPostsByCategory(id)),
+    deletePost: (id) => dispatch(deletePost(id)),
+    votePost: (postId,vote) => dispatch(votePost(postId, vote)),
+    getComments: (postId) => dispatch(getCommentsOfPost(postId)),
     changeSort: (sortBy) => dispatch({type:'SORT_BY_SOMETHING', payload: sortBy})
   }
 }
